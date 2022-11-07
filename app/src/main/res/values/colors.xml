@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="charcoal">#34282c</color>
+    <color name="status_background">#009688</color>
+    <color name="colorPrimary">#0b6156</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="chatbacground">#AAAAAA</color>
+    <color name="lightGreen">#e5ffcc</color>
+    <color name="MarbleBlue">#566D7E</color>
+    <color name="settingsIconColor">#0E8374</color>
+    <color name="backgroundColor">#ABABAB</color>
+    <color name="grayBackground">#BCBCBC</color>
+    <color name="darkRed">#9F0B0B</color>
+    <color name="fb_color">#3c5793</color>
+    <color name="whatsAppColor">#0b6165</color>
+    <color name="Iridium">#3D3C3A</color>
+    <color name="BlackCat">#413839</color>
+    <color name="BlackEel">#463E3F</color>
+    <color name="GrayDolphin">#5C5858</color>
+    <color name="CarbonGray">#625D5D</color>
+    <color name="Oil">#3B3131</color>
+    <color name="SonicSilver">#757575</color>
+    <color name="VampireGray">#565051</color>
+    <color name="SmokeyGray">#726E6D</color>
+    <color name="RomanSilver">#838996</color>
+    <color name="SlateGraniteGray">#657383</color>
+    <color name="LapisBlue">#15317E</color>
+    <color name="ButterflyBlue">#38ACEC</color>
+    <color name="PurpleIris">#571B7E</color>
+    <color name="BrightPurple">#6A0DAD</color>
+    <color name="DarkSlateBlueW3C">#483D8B</color>
+    <color name="DeepPeriwinkle">#5453A6</color>
+    <color name="PurpleHaze">#4E387E</color>
+    <color name="Lilac">#C8A2C8</color>
+    <color name="Periwinkle">#CCCCFF</color>
+    <color name="PurpleMonster">#461B7E</color>
+    <color name="RebeccaPurpleW3C">#663399</color>
+    <color name="BlossomPink">#F9B7FF</color>
+    <color name="FloralWhite">#FFFAF0</color>
+    <color name="SeaShell">#FFF5EE</color>
+</resources>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0000DAEE"
+    tools:context=".SignUpActivity">
+
+
+
+    <ImageView
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/download"
+        android:contentDescription="null"
+        android:padding="50dp">
+    </ImageView>
+
+
+    <TextView
+        android:layout_width="142dp"
+        android:layout_height="54dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:text="@string/movie_app"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:relative_layout="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
+
+    <EditText
+        android:inputType="text"
+        android:id="@+id/Username"
+        android:layout_width="203dp"
+        android:layout_height="41dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="300dp"
+        android:autofillHints="true"
+        android:layout_marginBottom="300dp"
+        android:text="@string/username"
+        android:textAllCaps="true"
+        android:textColor="#702727">
+    </EditText>
+
+
+    <EditText
+        android:id="@+id/Email"
+        android:layout_width="203dp"
+        android:layout_height="41dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="350dp"
+        android:layout_marginBottom="300dp"
+        android:inputType="text"
+        android:text="Email"
+        android:textAllCaps="true"
+        android:textColor="#702727">
+    </EditText>
+
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="203dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="350dp"
+        android:layout_marginTop="390dp"
+        android:layout_marginEnd="400dp"
+        android:layout_marginBottom="300dp"
+        android:inputType="text"
+        android:text="Password"
+        android:textAllCaps="true"
+        android:textColor="#702727">
+    </EditText>
+
+
+    <Button
+        android:id="@+id/SIGNUP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="400dp"
+        android:layout_marginBottom="400dp"
+        android:text="SIGNUP"></Button>>
+
+</RelativeLayout>
