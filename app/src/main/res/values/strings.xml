@@ -2,4 +2,13 @@
     <string name="app_name">lastest movie app</string>
     <string name="movie_app">Movie App</string>
     <string name="username">Username</string>
+    <string name="upload_profile_image">Upload Profile Image:</string>
+    <string name="name">Name...</string>
+    <string name="email_address">Email Address...</string>
+    <string name="password">Password...</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="don_t_have_an_account">Don\'t Have An Account?</string>
+    <string name="dashboard">Dashboard</string>
 </resources>
