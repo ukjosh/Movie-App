@@ -13,6 +13,13 @@
         android:theme="@style/Theme.latestMovieApp"
         tools:targetApi="31">
         <activity
+            android:name=".HistoryActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".YouTubePlayerActivity"
             android:exported="false">
             <meta-data
@@ -21,9 +28,7 @@
         </activity>
         <activity
             android:name=".SignUpActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -35,9 +40,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
