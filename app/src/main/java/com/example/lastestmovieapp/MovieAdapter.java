@@ -13,12 +13,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.lastestmovieapp.db.AppDatabase;
+import com.example.lastestmovieapp.db.Movie;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
@@ -57,6 +60,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
 
+                AppDatabase db = AppDatabase.getDbInstance(context);
+                Movie movie = new Movie();
+
+                movie.movieName = resultsList.get(position).getTitle();
+                movie.posterPath = "https://image.tmdb.org/t/p/w300"+resultsList.get(position).getPosterPath();
+                movie.movieDesc = resultsList.get(position).getOverview();
+                movie.youtubeId = String.valueOf(resultsList.get(position).getId());
+
+
                 String id = String.valueOf(resultsList.get(position).getId());
                 RequestQueue requestQueue = Volley.newRequestQueue(context);
                 String url = "https://api.themoviedb.org/3/movie/"+id+"/videos?api_key=6ed2279f7b98c9369069fe4760ac0e1f";
@@ -79,6 +91,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                         });
                 requestQueue.add(stringRequest);
 
+                db.moviesDao().insertAll(movie);
             }
         });
 
