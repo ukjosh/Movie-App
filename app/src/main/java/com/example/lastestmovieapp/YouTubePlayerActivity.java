@@ -27,8 +27,11 @@ public class YouTubePlayerActivity extends AppCompatActivity {
                 String videoId = "S0Q4gqBUs7c";
                 if (getIntent().hasExtra("videoId")){
                     videoId = getIntent().getStringExtra("videoId");
+                    youTubePlayer.loadVideo(videoId, 0);
+                }else{
+                    youTubePlayer.loadVideo(Utils.videoId, 0);
                 }
-                youTubePlayer.loadVideo(videoId, 0);
+
             }
         });
     }

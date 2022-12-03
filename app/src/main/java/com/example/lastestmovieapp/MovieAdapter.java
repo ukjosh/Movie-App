@@ -56,43 +56,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.desc.setText(resultsList.get(position).getOverview());
         Picasso.get().load("https://image.tmdb.org/t/p/w300"+resultsList.get(position).getPosterPath()).into(holder.thumbnailImage);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        holder.itemView.setOnClickListener(v -> {
 
-                AppDatabase db = AppDatabase.getDbInstance(context);
-                Movie movie = new Movie();
+            Intent intent = new Intent(context,MovieDetailsActivity.class);
+            intent.putExtra("id",resultsList.get(position).getId()+"");
+            intent.putExtra("title",resultsList.get(position).getTitle());
+            intent.putExtra("desc",resultsList.get(position).getOverview());
+            intent.putExtra("releaseDate",resultsList.get(position).getReleaseDate());
+            intent.putExtra("starsRating",resultsList.get(position).getPopularity());
+            intent.putExtra("poster",resultsList.get(position).getPosterPath());
+            context.startActivity(intent);
 
-                movie.movieName = resultsList.get(position).getTitle();
-                movie.posterPath = "https://image.tmdb.org/t/p/w300"+resultsList.get(position).getPosterPath();
-                movie.movieDesc = resultsList.get(position).getOverview();
-                movie.youtubeId = String.valueOf(resultsList.get(position).getId());
-
-
-                String id = String.valueOf(resultsList.get(position).getId());
-                RequestQueue requestQueue = Volley.newRequestQueue(context);
-                String url = "https://api.themoviedb.org/3/movie/"+id+"/videos?api_key=6ed2279f7b98c9369069fe4760ac0e1f";
-                StringRequest
-                        stringRequest
-                        = new StringRequest(
-                        Request.Method.GET,
-                        url,
-                        response -> {
-                            Gson gson = new GsonBuilder().create();
-                            VideoKeyModel  key = gson.fromJson(response,VideoKeyModel.class);
-
-                            String videoId = key.getResults().get(0).getKey();
-                            Intent intent = new Intent(context,YouTubePlayerActivity.class);
-                            intent.putExtra("videoId",videoId);
-                            context.startActivity(intent);
-                        },
-                        error -> {
-                            Toast.makeText(context, "Unable to get response!", Toast.LENGTH_SHORT).show();
-                        });
-                requestQueue.add(stringRequest);
-
-                db.moviesDao().insertAll(movie);
-            }
         });
 
 //        Picasso.get().load(resultsList.get(position).getPosterPath()).into(holder.Approvedimg);

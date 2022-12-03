@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 if (snapshot.exists()) {
                                                     Utils.currentUser = snapshot.getValue(UserAccount.class);
                                                     progressdialog.dismiss();
-                                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                    Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
                                                     startActivity(intent);
                                                     finish();
                                                 }
