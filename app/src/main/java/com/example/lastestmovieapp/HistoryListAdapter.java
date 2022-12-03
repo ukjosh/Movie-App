@@ -1,7 +1,10 @@
 package com.example.lastestmovieapp;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,28 +31,62 @@ import java.util.List;
 
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.ViewHolder> {
 
-    private final Context context;
+    Context context;
     private final List<Movie> movieList;
+    private final Boolean isHistory;
 
-    public HistoryListAdapter(Context context, List<Movie> movieList) {
+    public HistoryListAdapter(Context context, List<Movie> movieList, Boolean isHistory) {
         this.context = context;
         this.movieList = movieList;
+        this.isHistory = isHistory;
     }
 
     @NonNull
     @Override
-    public HistoryListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.movie_items_view,parent, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_items_view,parent, false);
 
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HistoryListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.title.setText(movieList.get(position).movieName);
         holder.desc.setText(movieList.get(position).movieDesc);
-        Picasso.get().load(movieList.get(position).posterPath).into(holder.thumbnailImage);
+        Picasso.get().load("https://image.tmdb.org/t/p/w300"+movieList.get(position).posterPath).into(holder.thumbnailImage);
+
+        if (isHistory){
+            holder.delete.setVisibility(View.VISIBLE);
+            holder.delete.setOnClickListener(v -> {
+
+                new AlertDialog.Builder(context)
+                        .setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                                AppDatabase db = AppDatabase.getDbInstance(context);
+                                db.moviesDao().deleteByUserId(movieList.get(position).uid);
+
+                                ((Activity)context).finish();
+
+                                Intent intent = new Intent(context,HistoryActivity.class);
+                                ((Activity)context).startActivity(intent);
+                                ((Activity) context).overridePendingTransition(0,0);
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+            });
+        }
 
         holder.itemView.setOnClickListener(v -> {
             String id = movieList.get(position).youtubeId;
@@ -66,6 +103,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
                         String videoId = key.getResults().get(0).getKey();
                         Intent intent = new Intent(context,YouTubePlayerActivity.class);
+                        Utils.videoId = key.getResults().get(0).getKey();
                         intent.putExtra("videoId",videoId);
                         context.startActivity(intent);
                     },
@@ -83,13 +121,14 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView thumbnailImage;
+        ImageView thumbnailImage, delete;
         TextView title, desc;
 
         public ViewHolder(@NonNull View itemView) {
 
             super(itemView);
 
+            delete = itemView.findViewById(R.id.delete);
             thumbnailImage = itemView.findViewById(R.id.thumbnail);
             title = itemView.findViewById(R.id.title);
             desc = itemView.findViewById(R.id.description);

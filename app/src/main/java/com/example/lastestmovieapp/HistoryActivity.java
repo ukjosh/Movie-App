@@ -61,9 +61,10 @@ public class HistoryActivity extends AppCompatActivity {
         movieList = db.moviesDao().getAll();
 
         Log.e("movieList", "loadUserList: "+movieList.size());
+        Log.e("movieList", "loadUserList: "+movieList.get(0).posterPath);
 
         Collections.reverse(movieList);
-        userListAdapter = new HistoryListAdapter(this,movieList);
+        userListAdapter = new HistoryListAdapter(HistoryActivity.this,movieList,true);
         recyclerView.setAdapter(userListAdapter);
     }
 }
